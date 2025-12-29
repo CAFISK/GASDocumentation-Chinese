@@ -173,36 +173,36 @@
 >    * [4.24](#changelog-4.24)
          
 <a name="intro"></a>
-## 1. Intro to the GameplayAbilitySystem Plugin
-From the [Official Documentation](https://docs.unrealengine.com/en-US/Gameplay/GameplayAbilitySystem/index.html):
->The Gameplay Ability System is a highly-flexible framework for building abilities and attributes of the type you might find in an RPG or MOBA title. You can build actions or passive abilities for the characters in your games to use, status effects that can build up or wear down various attributes as a result of these actions, implement "cooldown" timers or resource costs to regulate the usage of these actions, change the level of the ability and its effects at each level, activate particle or sound effects, and more. Put simply, this system can help you to design, implement, and efficiently network in-game abilities as simple as jumping or as complex as your favorite character's ability set in any modern RPG or MOBA title.
+## 1. 游戏玩法能力系统插件简介
+摘自[官方文档](https://docs.unrealengine.com/en-US/Gameplay/GameplayAbilitySystem/index.html)：
+>游戏玩法能力系统是一个高度灵活的框架，用于构建你可能在RPG或MOBA游戏中看到的能力和属性。你可以为游戏中的角色构建主动或被动技能，这些技能产生的状态效果可以增强或削弱各种属性，实现“冷却”计时器或资源消耗来规范这些技能的使用，改变技能等级及其在每个等级的效果，激活粒子或音效，等等。简而言之，这个系统可以帮助你设计、实现并高效地在网络中运行游戏技能，这些技能既可以像跳跃一样简单，也可以像任何现代RPG或MOBA游戏中你最喜欢角色的技能组一样复杂。
 
-The GameplayAbilitySystem plugin is developed by Epic Games and comes with Unreal Engine. It has been battle tested in AAA commercial games such as Paragon and Fortnite among others.
+GameplayAbilitySystem插件由Epic Games开发，随虚幻引擎一同发布。它已经在诸如《帕拉丁》和《堡垒之夜》等AAA级商业游戏中经过了实战检验。
 
-The plugin provides an out-of-the-box solution in single and multiplayer games for:
-* Implementing level-based character abilities or skills with optional costs and cooldowns ([GameplayAbilities](#concepts-ga))
-* Manipulating numerical `Attributes` belonging to actors ([Attributes](#concepts-a))
-* Applying status effects to actors ([GameplayEffects](#concepts-ge))
-* Applying `GameplayTags` to actors ([GameplayTags](#concepts-gt))
-* Spawning visual or sound effects ([GameplayCues](#concepts-gc))
-* Replication of everything mentioned above
+该插件为单人及多人游戏提供了一个开箱即用的解决方案，适用于：
+* 实现基于等级的角色能力或技能，具备可选的消耗和冷却时间([GameplayAbilities](#concepts-ga))
+* 操作属于参与者的数值 `Attributes` ([Attributes](#concepts-a))
+* 对角色应用状态效果 ([GameplayEffects](#concepts-ge))
+* 将 `GameplayTags` 应用于角色 ([GameplayTags](#concepts-gt))
+* 生成视觉或音效效果 ([GameplayCues](#concepts-gc))
+* 复制上述所有内容
 
-In multiplayer games, GAS provides support for [client-side prediction](#concepts-p) of:
-* Ability activation
-* Playing animation montages
-* Changes to `Attributes`
-* Applying `GameplayTags`
-* Spawning `GameplayCues`
-* Movement via `RootMotionSource` functions connected to the `CharacterMovementComponent`.
+在多人游戏中，GAS 为以下内容的客户端预测[client-side prediction](#concepts-p)提供支持:
+* 技能激活
+* 播放动画蒙太奇
+* 更改属性 `Attributes`
+* 应用Tags `GameplayTags`
+* 生成 `GameplayCues`
+* 通过连接到`CharacterMovementComponent`的`RootMotionSource` 函数进行移动 .
 
-**GAS must be set up in C++**, but `GameplayAbilities` and `GameplayEffects` can be created in Blueprint by the designers.
+**GAS必须在C++中设置**，但设计师可以在蓝图中创建`GameplayAbilities`和`GameplayEffects`。
 
-Current issues with GAS:
-* `GameplayEffect` latency reconciliation (can't predict ability cooldowns resulting in players with higher latencies having lower rate of fire for low cooldown abilities compared to players with lower latencies).
-* Cannot predict the removal of `GameplayEffects`. We can however predict adding `GameplayEffects` with the inverse effects, effectively removing them. This is not always appropriate or feasible and still remains an issue.
-* Lack of boilerplate templates, multiplayer examples, and documentation. Hopefully this helps with that!
+目前GAS存在的问题：
+* `GameplayEffect`延迟协调（无法预测技能冷却时间，导致与低延迟玩家相比，高延迟玩家在低冷却时间技能上的射速更低）。
+*无法预测`GameplayEffects`的移除。不过，我们可以预测添加具有相反效果的`GameplayEffects`，从而有效地移除它们。这并不总是合适或可行的，而且仍然是一个问题。
+*缺少样板模板、多人示例和文档。希望这能有所帮助！
 
-**[⬆ Back to Top](#table-of-contents)**
+**[⬆ 返回顶部](#table-of-contents)**
 
 <a name="sp"></a>
 ## 2. Sample Project
